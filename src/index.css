@@ -18,7 +18,7 @@ body {
   grid-template-rows: 3fr 1fr;
   grid-template-columns: 4fr 1fr;
   grid-area: head;
-  background-image: url('background2.png');
+  background-image: url('./background2.png');
 }
 
 #docinfo {

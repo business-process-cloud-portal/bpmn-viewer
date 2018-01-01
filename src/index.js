@@ -40,7 +40,3 @@ loadDocument.getDocument(id, function(text) {
       document.getElementById('docinfo').textContent="Document: " + fileinfo.name;
     });
 });
-
-function saveXML() {
-  viewer.saveXML();
-}
