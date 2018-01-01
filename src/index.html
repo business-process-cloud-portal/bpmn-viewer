@@ -1,6 +1,21 @@
 <html>
+<head>
+    <link rel="stylesheet" href="index.css" />
+</head>
 <body>
-  <div id="viewer" />
-  <script src="index.js"></script>
+  <section id="page">
+    <header>
+      <div id="docinfo"></div>
+      <div id="userprofile"><img id="userimage"></img><div id="username"></div></div>
+      <!--div id="actions">
+        <button type="button" onclick="saveXML()">Export BPMN</button>
+        <button type="button" onclick="viewer.saveSVG()">Export SVG</button>
+      </div-->
+    </header>
+
+    <main><div  id="viewer" /></main>
+    <footer>Cloud57</footer>
+  </section>
+  <script src="index.js" />
 </body>
 </html>

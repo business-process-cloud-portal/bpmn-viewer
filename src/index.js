@@ -1,4 +1,4 @@
-import BpmnViewer from 'bpmn-js';
+import BpmnViewer from 'bpmn-js/lib/NavigatedViewer';
 import bpmnDiagram from './diagram.bpmn';
 import GoogleLoadDocument from 'google-document-loader';
 
@@ -23,6 +23,9 @@ if (state.action === "open") {
 
 let loadDocument = new GoogleLoadDocument(options);
 loadDocument.getDocument(id, function(text) {
+  document.getElementById('username').textContent=auth.currentUser.get().getBasicProfile().getName();
+  document.getElementById('userimage').src=auth.currentUser.get().getBasicProfile().getImageUrl();
+
   viewer.importXML(text, function(err) {
 
     if (err) {
@@ -31,5 +34,13 @@ loadDocument.getDocument(id, function(text) {
       console.log('rendered');
     }
   });
-
+  gapi.client.request({'path': 'https://www.googleapis.com/drive/v3/files/' + id, 'params': {'supportsTeamDrives': true}})
+    .then(function(response) {
+      let fileinfo = JSON.parse(response.body);
+      document.getElementById('docinfo').textContent="Document: " + fileinfo.name;
+    });
 });
+
+function saveXML() {
+  viewer.saveXML();
+}
