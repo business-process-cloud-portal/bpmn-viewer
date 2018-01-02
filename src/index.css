@@ -33,7 +33,7 @@ header {
 #actions {
   grid-row: 2;
   grid-column: 1;
-  margin: 5px;
+  margin: 10px;
 }
 
 #userprofile {
