@@ -4,7 +4,7 @@ import GoogleLoadDocument from 'google-document-loader';
 
 let id = "0B-K7oJWHTbZ8RjZ0LWhEM3JQbm8";
 
-var viewer = new BpmnViewer({ container: '#viewer' });
+var viewer = new BpmnViewer({ container: '#viewer', height: '85%' });
 
 let options = {
   "clientId": "349923725301-cn75hqucfe63q2r40j1i40oiuocgtpst.apps.googleusercontent.com",
