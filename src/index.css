@@ -33,7 +33,7 @@ header {
 #actions {
   grid-row: 2;
   grid-column: 1;
-  margin: 10px;
+  margin: 0.5em;
 }
 
 #userprofile {
@@ -50,10 +50,23 @@ header {
 }
 
 footer {
-  background-color: black;
+  padding: 0.5em;
   color: white;
+  background-image: url('./background.png');
 }
 
 button {
-  border-radius: 5em;
+  border-radius: 1em;
+  border-color: black;
+  border-width: thin;
+  padding: 0.5em;
+  margin: 0.3em;
+  color: white;
+  background-color: black;
+  background-color: hsla(235, 0%, 50%, 0.5);
+}
+
+button:active {
+  background-color: black;
+  background-color: hsla(235, 50%, 50%, 0.5);
 }
