@@ -1,19 +1,43 @@
 <html>
 <head>
     <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="../node_modules/material-design-lite/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <header>
-      <div id="docinfo"></div>
-      <div id="userprofile"><img id="userimage"></img><div id="username"></div></div>
-      <div id="actions">
-        <button type="button" onclick="saveXML()">Export BPMN</button>
-        <button type="button" onclick="viewer.saveSVG()">Export SVG</button>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <div id="title"><span class="mdl-layout-title">Cloud57 BPMN Viewer</span></div>
+        <div class="mdl-layout-spacer"></div>
+        <div id="modelname"><span class="mdl-chip">
+            <span class="mdl-chip__text">Rechnungsfreigabe</span>
+        </span></div>
+        <div class="mdl-layout-spacer"></div>
+        <div id="actions">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Zoom</button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="saveXML()">Export BPMN</button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="viewer.saveSVG()">Export SVG</button>
+        </div>
+        <div class="mdl-layout-spacer"></div>
+        <div id="userprofile">
+          <img id="userimage">[userimage]</img>
+          <div id="username">[username]</div>
+        </div>
       </div>
     </header>
-    <main><div id="viewer"></div></main>
-    <footer>Cloud57</footer>
+    <main class="mdl-layout__content"><div id="viewer"></div></main>
+    <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__left-section">
+      <ul class="mdl-mini-footer__link-list">
+        <li><a href="#impressum" class="footer-nav">Impressum</a></li>
+        <li><a href="#datenschutz" class="footer-nav">Datenschutz</a></li>
+        <li><a href="#licences" class="footer-nav">Opensource Lizenzen</a></li>
+      </ul>
+      </div>
+    </footer>
+  </div>
   <script src="./index.js"></script>
 </body>
 </html>
