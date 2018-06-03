@@ -12,18 +12,17 @@
         <div id="title"><span class="mdl-layout-title">Cloud57 BPMN Viewer</span></div>
         <div class="mdl-layout-spacer"></div>
         <div id="modelname"><span class="mdl-chip">
-            <span class="mdl-chip__text">Rechnungsfreigabe</span>
+            <span id="docinfo" class="mdl-chip__text"></span>
         </span></div>
         <div class="mdl-layout-spacer"></div>
-        <div id="actions">
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Zoom</button>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="saveXML()">Export BPMN</button>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="viewer.saveSVG()">Export SVG</button>
-        </div>
+        <!--<div id="actions">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"><i class="material-icons">zoom_in</i></button>
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"><i class="material-icons">zoom_out</i></button>
+        </div>-->
         <div class="mdl-layout-spacer"></div>
         <div id="userprofile">
           <img id="userimage" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"></img>
-          <div id="username"></div>
+          
         </div>
       </div>
     </header>

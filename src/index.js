@@ -23,7 +23,6 @@ if (state.action === "open") {
 
 let loadDocument = new GoogleLoadDocument(options);
 loadDocument.getDocument(id, function(text) {
-  document.getElementById('username').textContent=auth.currentUser.get().getBasicProfile().getName();
   document.getElementById('userimage').src=auth.currentUser.get().getBasicProfile().getImageUrl();
 
   viewer.importXML(text, function(err) {
@@ -37,6 +36,7 @@ loadDocument.getDocument(id, function(text) {
   gapi.client.request({'path': 'https://www.googleapis.com/drive/v3/files/' + id, 'params': {'supportsTeamDrives': true}})
     .then(function(response) {
       let fileinfo = JSON.parse(response.body);
-      document.getElementById('docinfo').textContent="Document: " + fileinfo.name;
+      document.getElementById('docinfo').textContent=fileinfo.name;
     });
 });
+
