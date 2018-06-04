@@ -15,10 +15,10 @@
             <span id="docinfo" class="mdl-chip__text"></span>
         </span></div>
         <div class="mdl-layout-spacer"></div>
-        <!--<div id="actions">
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"><i class="material-icons">zoom_in</i></button>
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"><i class="material-icons">zoom_out</i></button>
-        </div>-->
+        <div id="actions">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" onclick="viewer.get('zoomScroll').stepZoom(1)"><i class="material-icons">zoom_in</i></button>
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" onclick="viewer.get('zoomScroll').stepZoom(-1)"><i class="material-icons">zoom_out</i></button>
+        </div>
         <div class="mdl-layout-spacer"></div>
         <div id="userprofile">
           <img id="userimage" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"></img>

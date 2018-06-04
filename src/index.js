@@ -5,7 +5,7 @@ import GoogleLoadDocument from 'google-document-loader';
 let id = "0B-K7oJWHTbZ8RjZ0LWhEM3JQbm8";
 
 var viewer = new BpmnViewer({ container: '#viewer', height: '85%' });
-
+window.viewer=viewer;
 let options = {
   "clientId": "349923725301-cn75hqucfe63q2r40j1i40oiuocgtpst.apps.googleusercontent.com",
   "scope": [
@@ -33,6 +33,7 @@ loadDocument.getDocument(id, function(text) {
       console.log('rendered');
     }
   });
+
   gapi.client.request({'path': 'https://www.googleapis.com/drive/v3/files/' + id, 'params': {'supportsTeamDrives': true}})
     .then(function(response) {
       let fileinfo = JSON.parse(response.body);
