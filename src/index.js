@@ -40,6 +40,7 @@ loadDocument.getDocument(id, function(text) {
     .then(function(response) {
       let fileinfo = JSON.parse(response.body);
       document.getElementById('docinfo').textContent=fileinfo.name;
+      document.title=fileinfo.name;
     });
 });
 
