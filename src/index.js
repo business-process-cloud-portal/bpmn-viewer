@@ -1,6 +1,7 @@
 import BpmnViewer from 'bpmn-js/lib/NavigatedViewer';
 import bpmnDiagram from './diagram.bpmn';
 import GoogleLoadDocument from 'google-document-loader';
+import MarterialDesign from 'material-design-lite';
 
 let id = "0B-K7oJWHTbZ8RjZ0LWhEM3JQbm8";
 
@@ -32,6 +33,7 @@ loadDocument.getDocument(id, function(text) {
     } else {
       console.log('rendered');
     }
+    viewer.get('canvas').zoom('fit-viewport', 'auto');
   });
 
   gapi.client.request({'path': 'https://www.googleapis.com/drive/v3/files/' + id, 'params': {'supportsTeamDrives': true}})
@@ -40,4 +42,24 @@ loadDocument.getDocument(id, function(text) {
       document.getElementById('docinfo').textContent=fileinfo.name;
     });
 });
+
+window.exportSVG = function saveSVG() {
+  viewer.saveSVG({}, function (err, svgdata) {
+    var DOMURL = window.URL || window.webkitURL || window;
+    var svgBlob = new Blob([svgdata], { type: 'image/svg+xml;charset=utf-8' });
+    var url = DOMURL.createObjectURL(svgBlob);
+    
+    var event = new MouseEvent('click', {
+      'view': window,
+      'bubbles': true,
+      'cancelable': true
+     });
+  
+     var a = document.createElement('a');
+     a.setAttribute('download', document.getElementById('docinfo').textContent + ".svg");
+     a.setAttribute('href', url);
+     a.setAttribute('target', '_blank');
+     a.dispatchEvent(event);
+  });
+}
 
