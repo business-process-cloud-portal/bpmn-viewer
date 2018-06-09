@@ -1,5 +1,4 @@
 import BpmnViewer from 'bpmn-js/lib/NavigatedViewer';
-import bpmnDiagram from './diagram.bpmn';
 import GoogleLoadDocument from 'google-document-loader';
 import MarterialDesign from 'material-design-lite';
 
