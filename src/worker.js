@@ -1,0 +1,1 @@
+// Empty service worker, this will be generated in build

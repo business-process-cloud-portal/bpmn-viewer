@@ -2,6 +2,15 @@ import BpmnViewer from 'bpmn-js/lib/NavigatedViewer';
 import GoogleLoadDocument from 'google-document-loader';
 import MarterialDesign from 'material-design-lite';
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('worker.js').then(registration => {
+      console.log('SW registered: ', registration);
+    }).catch(registrationError => {
+      console.log('SW registration failed: ', registrationError);
+    });
+  });
+}
 
 let id = "0B-K7oJWHTbZ8RjZ0LWhEM3JQbm8";
 
