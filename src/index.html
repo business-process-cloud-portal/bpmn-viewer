@@ -32,14 +32,12 @@
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <div id="title"><span class="mdl-layout-title">Cloud57 BPMN Viewer</span></div>
+    <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title mdl-layout--large-screen-only">Cloud57 BPMN Viewer</span>
+        <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
+        <span id="docinfo" class="mdl-layout-title mdl-layout--large-screen-only"></span>
+        
         <div class="mdl-layout-spacer"></div>
-        <div id="modelname">
-          <span id="docinfo" class="mdl-layout-title"></span>
-        </div>
-        <div class="mdl-layout-spacer"></div>
-        <div id="actions">
           <button id="bt_save_svg" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" onclick="exportSVG()">
             <i class="material-icons">cloud_download</i>
           </button>
@@ -59,14 +57,11 @@
             <i class="material-icons">zoom_out</i>
           </button>
           <div class="mdl-tooltip" for="bt_zoom_out">Zoom out</div>
-        </div>
-        <div class="mdl-layout-spacer"></div>
-        <div id="userprofile">
-          <img id="userimage" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"></img>
-          
-        </div>
+        <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
+        <img id="userimage" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-layout--large-screen-only"></img>
       </div>
     </header>
+    <!-- Left aligned menu below button -->
     <main class="mdl-layout__content"><div id="viewer"></div></main>
     <footer class="mdl-mini-footer">
         <div class="mdl-mini-footer__left-section">
