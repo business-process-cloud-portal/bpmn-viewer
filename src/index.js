@@ -12,6 +12,8 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+
+
 let id = "0B-K7oJWHTbZ8RjZ0LWhEM3JQbm8";
 
 var viewer = new BpmnViewer({ container: '#viewer', height: '85%' });
@@ -25,25 +27,18 @@ let options = {
   ]
 };
 
-let state = JSON.parse(decodeURI(window.location.search.substr(7)));
-if (state.action === "open") {
-  id = state.ids[0];
-  console.log(id);
-}
+if (window.location.search) {
+  let state = JSON.parse(decodeURI(window.location.search.substr(7)));
+  if (state.action === "open") {
+    id = state.ids[0];
+    console.log(id);
+  }
 
 let loadDocument = new GoogleLoadDocument(options);
 loadDocument.getDocument(id, function(text) {
   document.getElementById('userimage').src=auth.currentUser.get().getBasicProfile().getImageUrl();
-
-  viewer.importXML(text, function(err) {
-
-    if (err) {
-      console.log('error rendering', err);
-    } else {
-      console.log('rendered');
-    }
-    viewer.get('canvas').zoom('fit-viewport', 'auto');
-  });
+  window.localStorage.setItem("bpmndoc", text);
+  loadViewer(text);
 
   gapi.client.request({'path': 'https://www.googleapis.com/drive/v3/files/' + id, 'params': {'supportsTeamDrives': true}})
     .then(function(response) {
@@ -52,6 +47,13 @@ loadDocument.getDocument(id, function(text) {
       document.title=fileinfo.name;
     });
 });
+}
+else {
+  let text = window.localStorage.getItem("bpmndoc");
+  if (text) {
+    loadViewer(text);
+  }
+}
 
 window.exportSVG = function saveSVG() {
   viewer.saveSVG({}, function (err, svgdata) {
@@ -70,6 +72,18 @@ window.exportSVG = function saveSVG() {
      a.setAttribute('href', url);
      a.setAttribute('target', '_blank');
      a.dispatchEvent(event);
+  });
+}
+
+function loadViewer(text) {
+  viewer.importXML(text, function (err) {
+    if (err) {
+      console.log('error rendering', err);
+    }
+    else {
+      console.log('rendered');
+    }
+    viewer.get('canvas').zoom('fit-viewport', 'auto');
   });
 }
 
