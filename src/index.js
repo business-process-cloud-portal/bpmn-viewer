@@ -1,4 +1,5 @@
 import BpmnViewer from 'bpmn-js/lib/NavigatedViewer';
+import TouchModule from 'diagram-js/lib/navigation/touch';
 import GoogleLoadDocument from 'google-document-loader';
 import MarterialDesign from 'material-design-lite';
 
@@ -16,7 +17,7 @@ if ('serviceWorker' in navigator) {
 
 let id = "0B-K7oJWHTbZ8RjZ0LWhEM3JQbm8";
 
-var viewer = new BpmnViewer({ container: '#viewer', height: '85%' });
+var viewer = new BpmnViewer({ container: '#viewer', height: '85%' , additionalModules: [TouchModule]});
 window.viewer=viewer;
 let options = {
   "clientId": "349923725301-cn75hqucfe63q2r40j1i40oiuocgtpst.apps.googleusercontent.com",
@@ -44,6 +45,7 @@ loadDocument.getDocument(id, function(text) {
     .then(function(response) {
       let fileinfo = JSON.parse(response.body);
       document.getElementById('docinfo').textContent=fileinfo.name;
+      document.getElementById('docinfodrawer').textContent=fileinfo.name;
       document.title=fileinfo.name;
       window.localStorage.setItem("bpmndoctitle", fileinfo.name);
     });
@@ -54,6 +56,7 @@ else {
   if (text) {
     loadViewer(text);
     document.getElementById('docinfo').textContent=window.localStorage.getItem("bpmndoctitle");
+    document.getElementById('docinfodrawer').textContent=window.localStorage.getItem("bpmndoctitle");
     document.title=window.localStorage.getItem("bpmndoctitle");
     document.getElementById('userimage').isVisible=false;
   }
