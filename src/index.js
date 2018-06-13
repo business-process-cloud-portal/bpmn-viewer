@@ -45,6 +45,7 @@ loadDocument.getDocument(id, function(text) {
       let fileinfo = JSON.parse(response.body);
       document.getElementById('docinfo').textContent=fileinfo.name;
       document.title=fileinfo.name;
+      window.localStorage.setItem("bpmndoctitle", fileinfo.name);
     });
 });
 }
@@ -52,6 +53,9 @@ else {
   let text = window.localStorage.getItem("bpmndoc");
   if (text) {
     loadViewer(text);
+    document.getElementById('docinfo').textContent=window.localStorage.getItem("bpmndoctitle");
+    document.title=window.localStorage.getItem("bpmndoctitle");
+    document.getElementById('userimage').isVisible=false;
   }
 }
 
