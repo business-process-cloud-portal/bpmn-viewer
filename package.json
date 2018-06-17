@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -Rf ./dist/*",
     "start": "parcel ./src/index.html",
-    "build": "parcel build src/index.html --public-url ./ && workbox injectManifest workbox-config.js" 
+    "build": "parcel build src/index.html --public-url ./ && workbox injectManifest workbox-config.js && cp _redirects dist/" 
   },
   "repository": {
     "type": "git",

@@ -9,9 +9,9 @@ workbox.routing.registerRoute(
     workbox.strategies.cacheFirst({
         cacheName: 'googleapis',
         plugins: [
-        new workbox.expiration.Plugin({
-            maxEntries: 30,
-        }),
+            new workbox.expiration.Plugin({
+                maxEntries: 30,
+            }),
         ],
     }),
 );
