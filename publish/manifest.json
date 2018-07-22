@@ -1,0 +1,17 @@
+{
+    "manifest_version": 2,
+    "name": "Cloud57 BPMN Viewer",
+    "version": "1.0.0.0",
+    "description": "View BPMN diagramms direct from drive",
+    "icons": {
+      "128": "icons/viewer-128x128.png",
+      "16": "icons/viewer-16x16.png"
+    },
+    "container": ["GOOGLE_DRIVE"],
+    "api_console_project_id": "349923725301",
+    "app" : {
+      "launch" : {
+        "web_url" : "https://bpmnviewer.cloud57.de"
+      }
+    }
+  }

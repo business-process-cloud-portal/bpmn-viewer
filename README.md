@@ -2,20 +2,36 @@
 ## Overview
 Displays BPMN diagrams direct from Google Drive in the browser.
 
-The BPMN Viewer is based in the BPMN Viewer from [bpmn.io](https://bpmn.io/) and integrate it with Google Drive.
+Cloud57 BPMN Viewer is based on the BPMN viewer from [bpmn.io](https://bpmn.io/). It is integrated in Google Drive.
 
-##Install 
+## Features
+* View BPMN diagrams in the browser
+* Google Drive App
+* BPMN 2.0 conform
+* Zoom the diagram
+    * Zoom in/out
+    * Fit to page
+* Responsive
+* Export as SVG image
+* Material design
+
+## Install
 You can install the viewer direct from the Google marketplace.
 
-##Build and test
-
-`
+## Run locally
+### npm
+```
 git clone git@github.com:business-process-cloud-portal/bpmn-viewer.git
 cd bpmn-viewer
 npm install
 npm run start
-`
-Open browser with [http://localhost:1234](http://localhost:1234)
+```
+### yarn
+```
+git clone git@github.com:business-process-cloud-portal/bpmn-viewer.git
+cd bpmn-viewer
+yarn install
+yarn run start
+```
 
-
-Testen mit URL http://localhost:1234/?state=%7B%22ids%22:%5B%220B-K7oJWHTbZ8aXNxMDF3T1BTbWM%22%5D,%22action%22:%22open%22,%22userId%22:%22116559717564692111685%22%7D
+Open browser and go to [http://localhost:1234](http://localhost:1234)
