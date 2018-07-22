@@ -48,6 +48,7 @@ if (window.location.search) {
         document.getElementById('docinfodrawer').textContent = fileinfo.name;
         document.title = fileinfo.name;
         window.localStorage.setItem("bpmndoctitle", fileinfo.name);
+        document.getElementById('splash').style.visibility="hidden";
       });
   });
 }
@@ -58,6 +59,7 @@ else {
     document.getElementById('docinfo').textContent = window.localStorage.getItem("bpmndoctitle");
     document.getElementById('docinfodrawer').textContent = window.localStorage.getItem("bpmndoctitle");
     document.title = window.localStorage.getItem("bpmndoctitle");
+    document.getElementById('splash').style.visibility="hidden";
   }
   document.getElementById('userimage').hidden = true;
 }
