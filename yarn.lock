@@ -1844,9 +1844,9 @@ globals@^9.18.0:
   version "9.18.0"
   resolved "https://registry.yarnpkg.com/globals/-/globals-9.18.0.tgz#aa3896b3e69b487f17e31ed2143d69a8e30c2d8a"
 
-google-document-loader@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/google-document-loader/-/google-document-loader-1.0.5.tgz#0b1e9a1597e7ddf474a92ca4f37c869f5395634f"
+google-document-loader@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/google-document-loader/-/google-document-loader-2.0.1.tgz#78ac77560ab207c60503b9a997c32d838810985a"
   dependencies:
     load-google-api "^0.1.3"
 

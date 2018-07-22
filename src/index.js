@@ -36,7 +36,7 @@ if (window.location.search) {
   }
 
   let loadDocument = new GoogleLoadDocument(options);
-  loadDocument.getDocument(id, function (text) {
+  loadDocument.getDocument(id).then((text) => {
     document.getElementById('userimage').src = auth.currentUser.get().getBasicProfile().getImageUrl();
     window.localStorage.setItem("bpmndoc", text);
     loadViewer(text);
@@ -48,12 +48,15 @@ if (window.location.search) {
         document.getElementById('docinfodrawer').textContent = fileinfo.name;
         document.title = fileinfo.name;
         window.localStorage.setItem("bpmndoctitle", fileinfo.name);
-        document.getElementById('splash').style.visibility="hidden";
+        document.getElementById('splash').style.visibility = "hidden";
       },
-    function(reject) {
-      showErrorMessage('Error loading BPMN model: ' + reject);
+        function (reason) {
+          showErrorMessage('Error loading BPMN model: ' + reason);
+        });
+  },
+    (reason) => {
+      showErrorMessage(reason);
     });
-  });
 }
 else {
   let text = window.localStorage.getItem("bpmndoc");
@@ -62,7 +65,7 @@ else {
     document.getElementById('docinfo').textContent = window.localStorage.getItem("bpmndoctitle");
     document.getElementById('docinfodrawer').textContent = window.localStorage.getItem("bpmndoctitle");
     document.title = window.localStorage.getItem("bpmndoctitle");
-    document.getElementById('splash').style.visibility="hidden";
+    document.getElementById('splash').style.visibility = "hidden";
   }
   document.getElementById('userimage').hidden = true;
 }
@@ -90,7 +93,7 @@ window.exportSVG = function saveSVG() {
 
 function loadViewer(text) {
   viewer.importXML(text, function (err) {
-    
+
     if (err) {
       showErrorMessage('Error loading BPMN model: ' + err);
     }
