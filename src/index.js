@@ -49,7 +49,10 @@ if (window.location.search) {
         document.title = fileinfo.name;
         window.localStorage.setItem("bpmndoctitle", fileinfo.name);
         document.getElementById('splash').style.visibility="hidden";
-      });
+      },
+    function(reject) {
+      showErrorMessage('Error loading BPMN model: ' + reject);
+    });
   });
 }
 else {
@@ -87,13 +90,32 @@ window.exportSVG = function saveSVG() {
 
 function loadViewer(text) {
   viewer.importXML(text, function (err) {
+    
     if (err) {
-      console.log('error rendering', err);
+      showErrorMessage('Error loading BPMN model: ' + err);
     }
     else {
-      console.log('rendered');
+      showInfoMessage('BPMN model loaded');
     }
     viewer.get('canvas').zoom('fit-viewport', 'auto');
   });
 }
 
+function showErrorMessage(message) {
+  var notification = document.querySelector('.mdl-js-snackbar');
+  notification.MaterialSnackbar.showSnackbar(
+    {
+      message: message,
+      timeout: 10000
+    }
+  );
+}
+
+function showInfoMessage(message) {
+  var notification = document.querySelector('.mdl-js-snackbar');
+  notification.MaterialSnackbar.showSnackbar(
+    {
+      message: message
+    }
+  );
+}
