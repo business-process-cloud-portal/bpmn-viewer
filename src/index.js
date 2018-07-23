@@ -105,6 +105,12 @@ function loadViewer(text) {
 }
 
 function showErrorMessage(message) {
+  if (typeof message.status !== 'undefined') {
+    if (message.status === 404) {
+      message = 'BPMN model not found.';
+    }
+    
+  }
   var notification = document.querySelector('.mdl-js-snackbar');
   notification.MaterialSnackbar.showSnackbar(
     {
