@@ -37,7 +37,7 @@ if (window.location.search) {
 
   let loadDocument = new GoogleLoadDocument(options);
   loadDocument.getDocument(id).then((text) => {
-    document.getElementById('userimage').src = auth.currentUser.get().getBasicProfile().getImageUrl();
+    showUserImage();
     window.localStorage.setItem("bpmndoc", text);
     loadViewer(text);
 
@@ -48,15 +48,14 @@ if (window.location.search) {
         document.getElementById('docinfodrawer').textContent = fileinfo.name;
         document.title = fileinfo.name;
         window.localStorage.setItem("bpmndoctitle", fileinfo.name);
-        document.getElementById('splash').style.visibility = "hidden";
       },
         function (reason) {
-          showErrorMessage('Error loading BPMN model: ' + reason);
+          showErrorMessage(reason);
         });
   },
     (reason) => {
-      if (typeof auth.currentUser === 'Object') {
-        document.getElementById('userimage').src = auth.currentUser.get().getBasicProfile().getImageUrl();
+      if (typeof auth.currentUser !== 'undefined') {
+        showUserImage();
       }
       showErrorMessage(reason);
     });
@@ -68,9 +67,7 @@ else {
     document.getElementById('docinfo').textContent = window.localStorage.getItem("bpmndoctitle");
     document.getElementById('docinfodrawer').textContent = window.localStorage.getItem("bpmndoctitle");
     document.title = window.localStorage.getItem("bpmndoctitle");
-    document.getElementById('splash').style.visibility = "hidden";
   }
-  document.getElementById('userimage').hidden = true;
 }
 
 window.exportSVG = function saveSVG() {
@@ -93,17 +90,22 @@ window.exportSVG = function saveSVG() {
   });
 }
 
+function showUserImage() {
+  document.getElementById('userimage').style.visibility = "visible";
+  document.getElementById('userimage').src = auth.currentUser.get().getBasicProfile().getImageUrl();
+}
 
 function loadViewer(text) {
+  document.getElementById('splash').style.visibility = "hidden";
   viewer.importXML(text, function (err) {
 
     if (err) {
       showErrorMessage('Error loading BPMN model: ' + err);
     }
     else {
+      viewer.get('canvas').zoom('fit-viewport', 'auto');
       showInfoMessage('BPMN model loaded');
     }
-    viewer.get('canvas').zoom('fit-viewport', 'auto');
   });
 }
 
