@@ -55,6 +55,9 @@ if (window.location.search) {
         });
   },
     (reason) => {
+      if (typeof auth.currentUser === 'Object') {
+        document.getElementById('userimage').src = auth.currentUser.get().getBasicProfile().getImageUrl();
+      }
       showErrorMessage(reason);
     });
 }
@@ -109,7 +112,7 @@ function showErrorMessage(message) {
     if (message.status === 404) {
       message = 'BPMN model not found.';
     }
-    
+
   }
   var notification = document.querySelector('.mdl-js-snackbar');
   notification.MaterialSnackbar.showSnackbar(
