@@ -60,3 +60,7 @@ typings/
 dist
 .cache/
 
+# cypress testing recording files 
+cypress/screenshots/
+cypress/videos/
+
