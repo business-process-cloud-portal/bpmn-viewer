@@ -18,8 +18,6 @@ if ('serviceWorker' in navigator) {
 
 let id = "0B-K7oJWHTbZ8RjZ0LWhEM3JQbm8";
 
-var viewer = new BpmnViewer({ container: '#viewer', position: "absolute", additionalModules: [TouchModule] });
-window.viewer = viewer;
 let options = {
   "clientId": "349923725301-cn75hqucfe63q2r40j1i40oiuocgtpst.apps.googleusercontent.com",
   "scope": [
@@ -91,11 +89,14 @@ window.exportSVG = function saveSVG() {
 }
 
 function showUserImage() {
-  document.getElementById('userimage').style.visibility = "visible";
+  document.getElementById('userimage').classList.remove("is-hidden");
+  document.getElementById('userimage').classList.add("visible");
   document.getElementById('userimage').src = auth.currentUser.get().getBasicProfile().getImageUrl();
 }
 
 function loadViewer(text) {
+  var viewer = new BpmnViewer({ container: '#viewer', position: "absolute", additionalModules: [TouchModule] });
+  window.viewer = viewer;
   document.getElementById('splash').style.visibility = "hidden";
   viewer.importXML(text, function (err) {
 
