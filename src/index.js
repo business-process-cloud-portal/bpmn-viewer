@@ -1,6 +1,6 @@
 import BpmnViewer from 'bpmn-js/lib/NavigatedViewer';
 import TouchModule from 'diagram-js/lib/navigation/touch';
-import GoogleLoadDocument from 'google-document-loader';
+import DriveAppsUtil from 'drive-apps-util';
 import MarterialDesign from 'material-design-lite';
 
 
@@ -19,7 +19,7 @@ if ('serviceWorker' in navigator) {
 let id = "0B-K7oJWHTbZ8RjZ0LWhEM3JQbm8";
 
 let options = {
-  "clientId": "349923725301-cn75hqucfe63q2r40j1i40oiuocgtpst.apps.googleusercontent.com",
+  "clientId": "145940141011-rosijebehck77fkp5nu5f0db7j9kd2vf.apps.googleusercontent.com",
   "scope": [
     "profile",
     "https://www.googleapis.com/auth/drive.readonly",
@@ -27,46 +27,42 @@ let options = {
   ]
 };
 
-if (window.location.search) {
-  let state = JSON.parse(decodeURI(window.location.search.substr(7)));
-  if (state.action === "open") {
-    id = state.ids[0];
-  }
+let driveAppsUtil = new DriveAppsUtil(options);
+driveAppsUtil.init().then(() => {
+  driveAppsUtil.login().then((user) => {
+    showUserImage(user);
 
-  let loadDocument = new GoogleLoadDocument(options);
-  loadDocument.getDocument(id).then((text) => {
-    showUserImage();
-    window.localStorage.setItem("bpmndoc", text);
-    loadViewer(text);
-
-    gapi.client.request({ 'path': 'https://www.googleapis.com/drive/v3/files/' + id, 'params': { 'supportsTeamDrives': true } })
-      .then(function (response) {
-        let fileinfo = JSON.parse(response.body);
-        document.getElementById('docinfo').textContent = fileinfo.name;
-        document.getElementById('docinfodrawer').textContent = fileinfo.name;
-        document.title = fileinfo.name;
-        window.localStorage.setItem("bpmndoctitle", fileinfo.name);
-      },
-        function (reason) {
+    if (window.location.search) {
+      let state = JSON.parse(decodeURI(window.location.search.substr(7)));
+      if (state.action === "open") {
+        id = state.ids[0];
+        driveAppsUtil.getDocumentContent(id).then((text) => {
+          window.localStorage.setItem("bpmndoc", text);
+          loadViewer(text);
+        }, (reason) => {
           showErrorMessage(reason);
         });
-  },
-    (reason) => {
-      if (typeof auth.currentUser !== 'undefined') {
-        showUserImage();
+        driveAppsUtil.getDocumentMeta(id).then((fileinfo) => {
+          document.getElementById('docinfo').textContent = fileinfo.name;
+          document.getElementById('docinfodrawer').textContent = fileinfo.name;
+          document.title = fileinfo.name;
+          window.localStorage.setItem("bpmndoctitle", fileinfo.name);
+        }, (reason) => {
+          showErrorMessage(reason);
+        });
       }
-      showErrorMessage(reason);
-    });
-}
-else {
-  let text = window.localStorage.getItem("bpmndoc");
-  if (text) {
-    loadViewer(text);
-    document.getElementById('docinfo').textContent = window.localStorage.getItem("bpmndoctitle");
-    document.getElementById('docinfodrawer').textContent = window.localStorage.getItem("bpmndoctitle");
-    document.title = window.localStorage.getItem("bpmndoctitle");
-  }
-}
+      else {
+        let text = window.localStorage.getItem("bpmndoc");
+        if (text) {
+          loadViewer(text);
+          document.getElementById('docinfo').textContent = window.localStorage.getItem("bpmndoctitle");
+          document.getElementById('docinfodrawer').textContent = window.localStorage.getItem("bpmndoctitle");
+          document.title = window.localStorage.getItem("bpmndoctitle");
+        }
+      }
+    }
+  });
+});
 
 window.exportSVG = function saveSVG() {
   viewer.saveSVG({}, function (err, svgdata) {
@@ -88,10 +84,10 @@ window.exportSVG = function saveSVG() {
   });
 }
 
-function showUserImage() {
+function showUserImage(user) {
   document.getElementById('userimage').classList.remove("is-hidden");
   document.getElementById('userimage').classList.add("visible");
-  document.getElementById('userimage').src = auth.currentUser.get().getBasicProfile().getImageUrl();
+  document.getElementById('userimage').src = user.get().getBasicProfile().getImageUrl();
 }
 
 function loadViewer(text) {
