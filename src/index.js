@@ -19,7 +19,7 @@ if ('serviceWorker' in navigator) {
 let id = "0B-K7oJWHTbZ8RjZ0LWhEM3JQbm8";
 
 let options = {
-  "clientId": "145940141011-rosijebehck77fkp5nu5f0db7j9kd2vf.apps.googleusercontent.com",
+  "clientId": "349923725301-cn75hqucfe63q2r40j1i40oiuocgtpst.apps.googleusercontent.com",
   "scope": [
     "profile",
     "https://www.googleapis.com/auth/drive.readonly",
